@@ -46,44 +46,12 @@ console.log('project wired!')
 const ctaTextElement = document.querySelector("h1");
 ctaTextElement.textContent = siteContent.cta['h1'];
 
-// Wait for the DOM to fully load
-  // Get the header element
-  const headerElement = document.querySelector("header");
-
-  // Create a navigation element
-  const navElement = document.createElement("nav");
-
-  // Get the keys of the siteContent.nav object
-  const navContent = [
-      siteContent.nav['nav-item-1'],
-      siteContent.nav['nav-item-2'],
-      siteContent.nav['nav-item-3'],
-      siteContent.nav['nav-item-4'],
-      siteContent.nav['nav-item-5'],
-      siteContent.nav['nav-item-6']
-  ];
-
-  // Loop through the navigation keys
-  for (const navText of navContent) {
-      const anchorElement = document.createElement("a");
-      anchorElement.href = "#"; // Set the href attribute
-      anchorElement.textContent = navText; // Set the link text
-      anchorElement.classList.add("italic"); // Add the class "italic"
-      navElement.appendChild(anchorElement); // Append the anchor element to the navigation
-
-      console.log("Added link:", anchorElement.textContent);
-  }
-
-  // Append the navigation element to the header
-  headerElement.insertBefore(navElement, headerElement.firstChild);
-
-
-
-
-
-
-
-
+const navLinks = document.querySelectorAll('header nav a');
+const navLinksTexts = Object.values(siteContent.nav);
+navLinks.forEach((link, idx) => {
+  link.textContent = navLinksTexts[idx];
+  link.classList.add('italic');
+})
 
 
 const ctaButtonElement = document.querySelector("button");
@@ -129,29 +97,9 @@ img.src = siteContent.images["cta-img"];
 const middleImg = document.getElementById('middle-img');
 middleImg.src = siteContent.images["accent-img"];
 
-// Create a <footer> element
-const footerElement = document.createElement("footer");
-
-// Create an <a> element
-const anchorElement = document.createElement("a");
-
-// Set the href attribute for the <a> element
-anchorElement.href = "#";
-
-// Add the "bold" class to the <a> element
-anchorElement.classList.add("bold");
-
-// Create a text node for the text "Great Idea! 2021"
-const textNode = document.createTextNode("Copyright Great Idea! 2021");
-
-// Append the copyright symbol and text nodes to the <a> element
-anchorElement.appendChild(textNode);
-
-// Append the <a> element to the <footer> element
-footerElement.appendChild(anchorElement);
-
-// Append the <footer> element to the document body or a specific container
-document.body.appendChild(footerElement);
+const footerLink = document.querySelector('footer a');
+footerLink.textContent = siteContent.footer.copyright;
+footerLink.classList.add('bold');
 
 
 
